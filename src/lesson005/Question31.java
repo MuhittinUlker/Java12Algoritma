@@ -13,7 +13,7 @@ public class Question31 {
 		System.out.println("Kelime giriniz.");
 		String kelime = scanner.next().toLowerCase();
 		
-		System.out.println("Kelime giriniz.");
+		System.out.println("Harf giriniz.");
 		String harf = scanner.next().toLowerCase();
 		
 		int sayac=0;
