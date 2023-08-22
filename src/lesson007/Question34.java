@@ -1,0 +1,60 @@
+package lesson007;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Question34 {
+
+	public static void main(String[] args) {
+		
+		// 5 tahmin haklı sayi tahmin uygulaması
+		// sürekli kullanıcıdan sayı tahmini istenecek
+		// küçük tahmin ise arttır değilse azalt diyeceğiz
+		// kaçıncıda doğru yaptığını söyle
+		// sayı 1-100 arasında rnd sayıyı tahmin
+		
+		Scanner scanner = new Scanner(System.in);
+		Random rnd = new Random();
+		int[] tahminler=new int[5];
+		int tahminHakkı=6;
+		int sayi = rnd.nextInt(1,101);
+		System.out.println("Random sayınız===> "+sayi);
+		System.out.println("Bir tahmin giriniz: ");
+		int tahmin = scanner.nextInt();
+		int sayac=1,tahminSayisi=0;
+		bitir:
+		while(tahminHakkı>0) {
+			sayac++;
+			tahminHakkı--;
+			tahminler[tahminSayisi]=tahmin;
+			tahminSayisi++;
+			if(tahminHakkı==0) {
+				break bitir;
+			}else {
+			if(tahmin==sayi) {
+				System.out.println("Tebrikler "+(sayac-1)+". denemede buldunuz.");
+				System.out.println("Kaçıncı tahmininizi görmek istersiniz?");
+				int soru = scanner.nextInt();
+				System.out.println(soru+". tahmininiz: "+tahminler[soru-1]);
+				break;					
+			}else if (tahmin<sayi) {
+				System.out.println("Bilemediniz. Tahminizi arttırın.");	
+				System.out.println(tahminHakkı+" hakkınız kaldı.Bir tahmin giriniz: ");
+				tahmin = scanner.nextInt();
+			}else if(tahmin>sayi) {
+				System.out.println("Bilemediniz. Tahmininizi azaltın.");
+				System.out.println(tahminHakkı+" hakkınız kaldı.Bir tahmin giriniz: ");
+				tahmin = scanner.nextInt();
+				}
+			}
+			
+			}
+		if(tahminHakkı==0) {
+			System.out.println("Tahmin hakkınız bitti.");
+			System.out.println("Kaçıncı tahmininizi görmek istersiniz?");
+			int soru = scanner.nextInt();
+			System.out.println(soru+". tahmininiz: "+tahminler[soru-1]);
+		}
+		
+}
+}
