@@ -30,11 +30,16 @@ public class Question34 {
 			tahminSayisi++;
 			if(tahmin==sayi) {
 				System.out.println("Tebrikler "+(sayac-1)+". denemede buldunuz.");
-				System.out.print("Kaçıncı tahmininizi görmek istersiniz? ");
-				int soru = scanner.nextInt();
-				System.out.println(soru+". tahmininiz: "+tahminler[soru-1]);
-				break;					
-			}else if(tahminHakkı==0) {
+				for (int i = 0;; i++) {
+					System.out.print("Kaçıncı tahmininizi görmek istersiniz? ");
+					int soru = scanner.nextInt();
+					if(tahminler[soru-1]==0) {
+						System.out.println("İstemiş olduğunuz tahmin değeri kadar tahminde bulunmadınız.");
+					}else {
+					System.out.println(soru+". tahmininiz: "+tahminler[soru-1]+" Sayı: "+sayi+" idi.");
+					break bitir;}			
+				}
+				}else if(tahminHakkı==0) {
 				break bitir;
 			}
 			else if (tahmin<sayi) {
@@ -46,12 +51,21 @@ public class Question34 {
 				System.out.print(tahminHakkı+" hakkınız kaldı.Bir tahmin giriniz: ");
 				tahmin = scanner.nextInt();
 				}
+				
 			}
 		if(tahminHakkı==0){			
 			System.out.println("Tahmin hakkınız bitti.");
-			System.out.print("Kaçıncı tahmininizi görmek istersiniz? ");
-			int soru = scanner.nextInt();
-			System.out.println(soru+". tahmininiz: "+tahminler[soru-1]);
-			}
+			for (int i = 0;; i++) {
+				System.out.print("Kaçıncı tahmininizi görmek istersiniz? ");
+				int soru = scanner.nextInt();
+				if(tahminler[soru-1]==0) {
+					System.out.println("İstemiş olduğunuz tahmin değeri kadar tahminde bulunmadınız.");
+				}else {
+				System.out.println(soru+". tahmininiz: "+tahminler[soru-1]+" Sayı: "+sayi+" idi.");
+				break;
+				}
+			}	
+		}
+		scanner.close();
 	}	
 }
