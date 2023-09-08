@@ -23,6 +23,15 @@ public class Main {
 		//çekmek istediği tutar ve hesapno alalım
 		//admin onayından sonra para hesaba geçecek
 		
+		//krediBorcunuOde()
+		//dışarıdan nakit
+		//ödenecek kredi borcu var mı
+		//borç var ise ödeme gerçekleşsin ve kredi borcundan düşülsün ve güncel borcu söyleyelim
+		//ve her ödemede kredi puanını 10 puan arttıralım.
+		//max kredi tutarı kadar ödeyebilsin
+		
+		//başvuru onaylanınca ya da reddedilince usera mail atalım
+		
 		Account account = new Account(1000);
 		
 		AccountManager accountManager = new AccountManager();
@@ -37,9 +46,24 @@ public class Main {
 		
 		UserManager manager = new UserManager();
 		manager.krediBasvurusu(account3, 10000.0);
-		adminManager.basvuruReddet(account3);
+		try {
+			adminManager.basvuruOnayla(user);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		System.out.println(account3.getMoney());
 		
+		manager.krediOde(user, 5000, false);
+		System.out.println(account3.getKrediBorcu());
+		System.out.println(user.getKrediPuanı());
+		System.out.println(account3.getMoney());
+		
+		manager.krediBasvurusu(account3, 20000.0);
+		try {
+			adminManager.basvuruOnayla(user);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

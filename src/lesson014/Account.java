@@ -12,7 +12,27 @@ public class Account {
 	private double money;
 	private boolean krediBasvurusu;
 	private double istenenKrediMiktari;
+	private boolean krediBorcuVarMi;
+	private double krediBorcu;
 	
+	public static final int KREDI_PUANI_ARTIS_MIKTARI = 10;
+
+	public double getKrediBorcu() {
+		return krediBorcu;
+	}
+
+	public void setKrediBorcu(double krediBorcu) {
+		this.krediBorcu = krediBorcu;
+	}
+
+	public boolean isKrediBorcuVarMi() {
+		return krediBorcuVarMi;
+	}
+
+	public void setKrediBorcuVarMi(boolean krediBorcuVarMi) {
+		this.krediBorcuVarMi = krediBorcuVarMi;
+	}
+
 	public Account(double money) {
 		this.accountNo = randomGenerateAccountNo();
 		this.money = money;
