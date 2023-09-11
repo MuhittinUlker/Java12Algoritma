@@ -65,6 +65,10 @@ public class Main {
 			e.printStackTrace();
 		}
 		
+		System.out.println(user.getGelenKutusu().get(0).getBaslik());
+		System.out.println(user.getGelenKutusu().get(0).getGonderen());
+		System.out.println(user.getGelenKutusu().get(0).getIcerik());
+		System.out.println(user.getGelenKutusu().get(0).getGonderiSaati().getHour()+":"+user.getGelenKutusu().get(0).getGonderiSaati().getMinute());
 	}
 
 }

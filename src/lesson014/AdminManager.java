@@ -21,7 +21,6 @@ public class AdminManager {
 			System.out.println(LocalDateTime.now());
 			Thread.sleep(5000);
 			mailGonder(user);
-			System.out.println("Kredi başvurunuz onaylanmıştır. ");
 			user.getAccount().setMoney(user.getAccount().getMoney() + user.getAccount().getIstenenKrediMiktari());
 			user.getAccount().setIstenenKrediMiktari(0);
 			user.getAccount().setKrediBasvurusu(false);
