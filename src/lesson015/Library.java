@@ -7,15 +7,27 @@ public class Library {
 
 	private String name;
 	private List<Book> bookList;
+	private List<Customer> customerList;
 	
 	
 	public Library() {
 		this.bookList=new ArrayList<Book>();
+		this.customerList = new ArrayList<Customer>();
 	}
 	
 	public Library(String name) {
 		this();
 		this.name = name;
+	}
+
+	
+
+	public List<Customer> getCustomerList() {
+		return customerList;
+	}
+
+	public void setCustomerList(List<Customer> customerList) {
+		this.customerList = customerList;
 	}
 
 	public String getName() {

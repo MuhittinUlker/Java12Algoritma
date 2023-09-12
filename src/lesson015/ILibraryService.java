@@ -11,4 +11,9 @@ public interface ILibraryService {
 	void getAuthorByName();
 
 	void deleteBookByID();
+	
+	void changeStatusToDeleted(String id);
+	
+	void applyDiscount(String id,double indirimMiktari);
+	
 }

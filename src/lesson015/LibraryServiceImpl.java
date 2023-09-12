@@ -20,10 +20,10 @@ public class LibraryServiceImpl implements ILibraryService {
 
 	@Override
 	public void getAllBooks() {
-		System.out.println("Kitap Adı\tKitap Yazarı\tKategorisi\tKitap Fiyatı");
+		System.out.println("Kitap Adı\tKitap Yazarı\tKategorisi\tStatüsü\t\tKitap Fiyatı\tKitap ID");
 		for (Book book : Runner.library.getBookList()) {
 			System.out.println(
-					book.getName() + "\t" + book.getAuthor() + "\t" + book.getCategory() + "\t" + book.getPrice());
+					book.getName() + "\t\t" + book.getAuthor() + "\t\t" + book.getCategory().getName() +"\t\t"+ book.geteStatus()+"\t\t" + book.getPrice()+"\t\t"+book.getId());
 		}
 	}
 
@@ -63,8 +63,7 @@ public class LibraryServiceImpl implements ILibraryService {
 		String delID = Utility.getStringValue("Silmek istediğiniz kitabın ID'sini girin: ");
 		for (int i = 0; i < Runner.library.getBookList().size() - 1; i++) {
 			if (Runner.library.getBookList().get(i).getId().equalsIgnoreCase(delID)) {
-				Runner.library.getBookList().get(i).seteStatus(EStatus.DELETED);
-				;
+				Runner.library.getBookList().remove(i);
 				index--;
 				System.out.println(delID + " ID'li kitap silindi.");
 			}
@@ -73,5 +72,36 @@ public class LibraryServiceImpl implements ILibraryService {
 			System.out.println("Aradığınız ID'de bir kitap bulunamadı.");
 		}
 	}
+
+	@Override
+	public void changeStatusToDeleted(String id) {
+		Book book = findById(id);
+		if (book!=null) {
+			book.seteStatus(EStatus.DELETED);
+		}else {
+			System.out.println("Bu id ile kayıtlı bir kitap bulunamadı.");
+		}
+	}
+	
+	private Book findById(String id) {
+		for (Book book : Runner.library.getBookList()) {
+			if (book.getId().equals(id)) {
+				return book;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void applyDiscount(String id,double indirimMiktari) {
+		Book book = findById(id);
+		if (book!=null) {
+			book.setPrice(book.getPrice()-indirimMiktari);
+		}else {
+			System.out.println("İndirim uygulanacak kitap kayıtlı değil.");
+		}
+	}
+	
+	
 
 }
