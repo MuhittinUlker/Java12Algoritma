@@ -1,6 +1,11 @@
 package lesson015;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class CustomerManager {
+	
+	static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
 	public void register() {
 		String username = Utility.getStringValue("Username Girin: ");
@@ -43,6 +48,13 @@ public class CustomerManager {
 			}
 		}
 		return null;
+	}
+	
+	public LocalDateTime zamanBelirle() {
+		int iadeTarihi = Utility.getIntValue("Kaç gün sonra iade edeceksiniz: ");
+		LocalDateTime currentDate = LocalDateTime.now();
+		LocalDateTime returnDate = currentDate.plusDays(iadeTarihi);
+		return returnDate;
 	}
 	
 	

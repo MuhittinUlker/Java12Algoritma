@@ -1,5 +1,6 @@
 package lesson015;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Book {
@@ -11,6 +12,9 @@ public class Book {
 	private double price;
 	private EStatus eStatus;
 	private Category category;
+	
+	private LocalDateTime rentDate;
+	private LocalDateTime returnDate;
 
 	public Category getCategory() {
 		return category;
@@ -76,6 +80,22 @@ public class Book {
 
 	public void seteStatus(EStatus eStatus) {
 		this.eStatus = eStatus;
+	}
+
+	public LocalDateTime getRentDate() {
+		return rentDate;
+	}
+
+	public void setRentDate(LocalDateTime rentDate) {
+		this.rentDate = rentDate;
+	}
+
+	public LocalDateTime getReturnDate() {
+		return returnDate;
+	}
+
+	public void setReturnDate(LocalDateTime returnDate) {
+		this.returnDate = returnDate;
 	}
 
 }

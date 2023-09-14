@@ -1,7 +1,12 @@
 package lesson015;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Runner {
 
+	static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+	
 	static Library library = new Library("Milli Kütüphane");
 	static CustomerManager customerManager = new CustomerManager();
 	static LibraryServiceImpl serviceImpl = new LibraryServiceImpl();
@@ -133,12 +138,16 @@ public class Runner {
 	public static void userApplication(Customer customer) {
 		
 		while (true) {
+			System.out.println("Hoşgeldiniz "+customer.getUsername());
 			System.out.println("1- Kitap Kirala");
 			System.out.println("0- Logout");
 			int secim = Utility.getIntValue("Seçiminizi girin: ");
 			switch (secim) {
 			case 1:
-				//TODO: kirala metod
+				rentBook(customer);
+				break;
+			case 2:
+				returnBook(customer);
 				break;
 			case 0:
 				System.out.println("Logout yaptınız.");
@@ -149,6 +158,55 @@ public class Runner {
 			}
 		}
 	}
+	
+	private static void returnBook(Customer customer) {
+		if (customer.getRentedBooks().isEmpty()) {
+			System.out.println("Kiralanmış kitabınız bulunmamaktadır.");
+		}else {
+			for (Book book : Runner.library.getBookList()) {
+				if (book.geteStatus().name().equals(EStatus.INRENT.name())) {
+					System.out.println(book.getName()+" İade edilmesi gereken tarih: "+book.getReturnDate().format(formatter));
+				}
+			}
+			String id = Utility.getStringValue("İade etmek istediğiniz kitap ID'sini girin: ");
+			
+		}
+	}
+
+	private static void rentBook(Customer customer) {
+		boolean isRented=false;
+			for (Book book : Runner.library.getBookList()) {
+				System.out.println(book.getName()+"\t"+book.getId());
+			}
+			String id = Utility.getStringValue("Kiralanacak kitap ID'sini girin: ");
+			for (Book book : Runner.library.getBookList()) {
+				if(book.getId().equals(id)) {
+					if (book.geteStatus().name().equals(EStatus.ACTIVE.name())) {
+						if (customer.getBalance()>=book.getPrice()) {
+							customer.getRentedBooks().add(book);
+							customer.setBalance(customer.getBalance()-book.getPrice());
+							book.seteStatus(EStatus.INRENT);
+							book.setRentDate(LocalDateTime.now());
+							book.setReturnDate(customerManager.zamanBelirle());
+							System.out.println("Kitabı iade etmeniz gereken tarih: "+book.getReturnDate().format(formatter));
+							System.out.println("Kitap"+customer.getUsername()+" tarafından kiralandı..");
+							isRented=true;
+						}else {
+							System.out.println("Kiralamak için bakiyeniz yetersiz..");
+							return;
+						}
+					}else {
+						System.out.println("Kitap başka bir üyede kirada..");
+						return;
+					}
+				}				
+			}
+			if (!isRented) {
+				System.out.println("Aradığınız ID'ye sahip kitap sistemde kayıtlı değil..");
+			}
+	}
+
+	
 	
 	
 }
