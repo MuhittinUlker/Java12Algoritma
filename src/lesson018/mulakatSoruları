@@ -1,0 +1,12 @@
+	//bir field'ın set metodu yok ise nasıl set edebiliriz
+	//---constructor
+	
+	//StringBuilder neden kullanırız
+	// mutable (değiştirilebilir) olduğu için manipülasyonda performans ve kolaylık sağlar
+	
+	//final --> değişkeni immutable yapar
+	
+	//polymorphism nedir? gerçek hayat örneği
+	//üst sınıfın alt sınıfların referansını tutabilmesi
+	//üst sınıf yeteneklerinin alt sınıflarda uyarlanarak kullanılabilmesi
+	//ödemesistemleri(akbil,kartödeme,nftödeme)(ödemeYap())->ödeme türüne göre davranış belirleyebiliriz.
