@@ -2,7 +2,7 @@ package lesson020.StreamUygulama;
 
 public enum EProduct {
 
-	Cips(50),Kola(60),Gofret(15),Sut(20),Kek(10);
+	Cips(50),Kola(60),Gofret(15),Sut(20),Kek(12);
 	
 	private double fiyat;
 	

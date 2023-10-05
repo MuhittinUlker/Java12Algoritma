@@ -10,6 +10,14 @@ public class Main {
 		//Program başladığında ürünlerin hepsi oluşmuş olsun
 		
 		Market market = new Market();
+		market.showListofProducts();
+		
+		market.getAvg();
+		
+//		market.addToCart();
+//		market.addToCart();
+//		market.showCart();
+		
 		
 	}
 
